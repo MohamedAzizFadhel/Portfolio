@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Personal portfolio" />
+  <title id="page-title">Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <div class="layout">
+
+    <!-- ── Sidebar ─────────────────────────────── -->
+    <aside class="sidebar">
+      <div class="sidebar-inner">
+        <div class="tag" id="handle-tag"></div>
+        <h1 class="name" id="name"></h1>
+        <p class="role" id="role"></p>
+        <div class="divider"></div>
+        <nav class="links" id="links"></nav>
+      </div>
+    </aside>
+
+    <!-- ── Main ────────────────────────────────── -->
+    <main class="main">
+      <section class="bio-section">
+        <span class="section-label">about</span>
+        <p class="bio" id="bio"></p>
+      </section>
+    </main>
+
+  </div>
+
+  <!-- Load config first, then the renderer -->
+  <script src="config.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
