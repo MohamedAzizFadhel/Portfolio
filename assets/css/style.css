@@ -1,0 +1,214 @@
+/* ── Reset ──────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── CSS variables (accent set by JS from config) ── */
+:root {
+  --bg:       #1a1a1a;
+  --bg2:      #111111;
+  --border:   #2a2a2a;
+  --fg:       #e8e8e8;
+  --muted:    #666666;
+  --accent:   #66d9ef;   /* overridden by main.js */
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+  --font-sans: 'IBM Plex Sans', sans-serif;
+}
+
+/* ── Base ───────────────────────────────────────── */
+html, body {
+  height: 100%;
+}
+
+body {
+  background: var(--bg2);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Layout ─────────────────────────────────────── */
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ── Sidebar ────────────────────────────────────── */
+.sidebar {
+  width: 300px;
+  min-width: 300px;
+  background: var(--bg);
+  border-right: 1px solid var(--border);
+  padding: 48px 36px;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.sidebar-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* handle tag */
+.tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--accent);
+  letter-spacing: .12em;
+  text-transform: lowercase;
+  margin-bottom: 20px;
+}
+
+.tag::before {
+  content: "~/";
+  opacity: .5;
+}
+
+/* name */
+.name {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--fg);
+  letter-spacing: -.01em;
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+
+/* role */
+.role {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--muted);
+  letter-spacing: .06em;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* divider */
+.divider {
+  width: 24px;
+  height: 1px;
+  background: var(--border);
+  margin: 28px 0;
+}
+
+/* links */
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.link-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  padding: 5px 0;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: .03em;
+  transition: color .15s;
+  border: none;
+  background: none;
+}
+
+.link-item::before {
+  content: "→";
+  color: var(--border);
+  font-size: 10px;
+  transition: color .15s, transform .15s;
+}
+
+.link-item:hover {
+  color: var(--accent);
+}
+
+.link-item:hover::before {
+  color: var(--accent);
+  transform: translateX(3px);
+}
+
+/* ── Main ───────────────────────────────────────── */
+.main {
+  flex: 1;
+  padding: 48px 56px;
+  max-width: 680px;
+}
+
+.bio-section {
+  position: relative;
+  padding-top: 4px;
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  opacity: .7;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.bio {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 300;
+  color: #c0c0c0;
+  line-height: 1.85;
+  white-space: pre-line;
+}
+
+/* ── Responsive ─────────────────────────────────── */
+@media (max-width: 700px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    min-width: unset;
+    height: auto;
+    position: static;
+    padding: 36px 28px 28px;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .main {
+    padding: 36px 28px;
+    max-width: 100%;
+  }
+}
+
+/* ── Fade-in ────────────────────────────────────── */
+@keyframes fadein {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.tag, .name, .role, .divider, .links, .bio-section {
+  animation: fadein .4s ease both;
+}
+.name         { animation-delay: .05s; }
+.role         { animation-delay: .10s; }
+.divider      { animation-delay: .15s; }
+.links        { animation-delay: .20s; }
+.bio-section  { animation-delay: .25s; }
